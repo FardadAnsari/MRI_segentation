@@ -104,6 +104,7 @@ visit = 0
 
 
 proxy_list=proxy_finder()
+print(len(proxy_list))
 
 while True:
     #print(sys.argv[1])
@@ -118,13 +119,14 @@ while True:
                 certain=True
 
                 try:
+                    random.shuffle(device_list)
                     print(sys.argv[1])
                     s_1 = random.randint(2, 6)
                     sleep(s_1)
                     
                     interact = visit_pp(ip,device)
                     interact.get(sys.argv[2])
-                    sleep(60)
+                    sleep(15)
                     print("I found the website")
                     interact.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                     sleep(5)
@@ -142,17 +144,45 @@ while True:
                     print(device)
                     interact.quit()
                     print(" Interaction number " + str(count_s) + " was successful !")
+                    #random.shuffle(device_list)
+                
+                    for user_agent in device_list[1000:1050]:
+                        try:
+                            proxy=ip
+                            interact_1=visit_pp(proxy,user_agent)
+                            interact_1.get(sys.argv[2])
+                            sleep(20)
+                            interact_1.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                            sleep(10)
+                            button=interact_1.find_elements_by_tag_name('a')
+                            button[random.randint(44,48)].click()
+                            sleep(22)
+                            #random.shuffle(device_list)
+                            count_s = count_s + 1
+                            visit = visit + 1
+                            print(device)
+                            interact_1.quit()
+                            print(" Interaction number " + str(count_s) + " was successful !")
+                            print("Visit was with same ip ......")
+                        except:
+                            print("Try agian with same working ip different user-agent...")
+                            continue
+
+
+
 
                 except:
-                    
+
                     print(" Interaction number " + str(count_fail) + " was Unsuccessful !")
-                    interact.quit()
                     count_fail=count_fail+1
-                    if count_fail == 200:
-                        proxy_list=proxy_finder()
+                    interact.quit()                   
+                    #if count_fail == 200:
+                    #    proxy_list=proxy_finder()
+                    proxy_list.remove(ip)
+                    print("Bad proxy was thrown away.")
                     print("Proxy has been Changed")
                     random.shuffle(proxy_list)
-                    break
+                    break 
 
 
                 # waiting for 3 hours
