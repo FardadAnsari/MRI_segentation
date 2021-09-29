@@ -181,9 +181,7 @@ while True:
 
                     print(" Interaction number " + str(count_fail) + " was Unsuccessful !")
                     count_fail=count_fail+1
-                    interact.quit()                   
-                    #if count_fail == 200:
-                    #    proxy_list=proxy_finder()
+                    interact.quit()             
                     proxy_list.remove(ip)
                     print("Bad proxy was thrown away.")
                     print("Proxy has been Changed")
