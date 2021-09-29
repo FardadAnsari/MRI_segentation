@@ -147,6 +147,7 @@ while True:
                     #random.shuffle(device_list)
                 
                     for user_agent in device_list[1000:1050]:
+                        x=0
                         try:
                             proxy=ip
                             interact_1=visit_pp(proxy,user_agent)
@@ -165,6 +166,10 @@ while True:
                             print(" Interaction number " + str(count_s) + " was successful !")
                             print("Visit was with same ip ......")
                         except:
+                            x=x+1
+                            if x==10:
+                                proxy_list.remove(ip)
+                                break
                             print("Try agian with same working ip different user-agent...")
                             continue
 
