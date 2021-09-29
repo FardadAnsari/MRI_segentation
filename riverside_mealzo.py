@@ -147,32 +147,32 @@ while True:
                     #random.shuffle(device_list)
                     x=0
                 
-                    for user_agent in device_list[1000:1050]:
+                    for user_agent in device_list[1000:1006]:
                         
-                        try:
-                            proxy=ip
-                            interact_1=visit_pp(proxy,user_agent)
-                            interact_1.get(sys.argv[2])
-                            sleep(20)
-                            interact_1.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                            sleep(10)
-                            button=interact_1.find_elements_by_tag_name('a')
-                            button[random.randint(44,48)].click()
-                            sleep(22)
-                            #random.shuffle(device_list)
-                            count_s = count_s + 1
-                            visit = visit + 1
-                            print(device)
-                            interact_1.quit()
-                            print(" Interaction number " + str(count_s) + " was successful !")
-                            print("Visit was with same ip ......")
-                        except:
-                            x=x+1
-                            if x==10:
-                                proxy_list.remove(ip)
-                                break
-                            print("Try agian with same working ip different user-agent...")
-                            continue
+                        
+                        proxy=ip
+                        interact=visit_pp(proxy,user_agent)
+                        interact.get(sys.argv[2])
+                        sleep(20)
+                        interact.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                        sleep(10)
+                        button=interact.find_elements_by_tag_name('a')
+                        button[random.randint(44,48)].click()
+                        sleep(22)
+                        #random.shuffle(device_list)
+                        count_s = count_s + 1
+                        visit = visit + 1
+                        print(device)
+                        interact.quit()
+                        print(" Interaction number " + str(count_s) + " was successful !")
+                        print("Visit was with same ip ......")
+                        # except:
+                        #     x=x+1
+                        #     if x==10:
+                        #         proxy_list.remove(proxy)
+                        #         break
+                        #     print("Try agian with same working ip different user-agent...")
+                        #     continue
 
 
 
