@@ -145,9 +145,10 @@ while True:
                     interact.quit()
                     print(" Interaction number " + str(count_s) + " was successful !")
                     #random.shuffle(device_list)
+                    x=0
                 
                     for user_agent in device_list[1000:1050]:
-                        x=0
+                        
                         try:
                             proxy=ip
                             interact_1=visit_pp(proxy,user_agent)
